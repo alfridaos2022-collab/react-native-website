@@ -1,0 +1,405 @@
+import {BusinessPlan, Quote, Budget, BusinessPlanTemplate, AdministrativeStep} from '../types';
+
+// Modèles de plans d'affaires prédéfinis
+export const businessPlanTemplates: BusinessPlanTemplate[] = [
+  {
+    id: '1',
+    name: 'Restaurant',
+    sector: 'Restauration',
+    description: 'Modèle complet pour un restaurant avec analyse de marché, prévisions financières et plan marketing.',
+    sections: [
+      {id: '1', title: 'Résumé Opérationnel', content: '', order: 1, isRequired: true},
+      {id: '2', title: 'Présentation de l\'Entreprise', content: '', order: 2, isRequired: true},
+      {id: '3', title: 'Analyse du Marché', content: '', order: 3, isRequired: true},
+      {id: '4', title: 'Produits et Services', content: '', order: 4, isRequired: true},
+      {id: '5', title: 'Stratégie Marketing', content: '', order: 5, isRequired: true},
+      {id: '6', title: 'Plan Opérationnel', content: '', order: 6, isRequired: true},
+      {id: '7', title: 'Plan Financier', content: '', order: 7, isRequired: true},
+    ],
+  },
+  {
+    id: '2',
+    name: 'E-commerce',
+    sector: 'E-commerce',
+    description: 'Modèle adapté pour une boutique en ligne avec stratégie digitale et logistique.',
+    sections: [
+      {id: '1', title: 'Résumé Opérationnel', content: '', order: 1, isRequired: true},
+      {id: '2', title: 'Présentation de l\'Entreprise', content: '', order: 2, isRequired: true},
+      {id: '3', title: 'Analyse du Marché Digital', content: '', order: 3, isRequired: true},
+      {id: '4', title: 'Catalogue Produits', content: '', order: 4, isRequired: true},
+      {id: '5', title: 'Stratégie E-marketing', content: '', order: 5, isRequired: true},
+      {id: '6', title: 'Logistique et Fulfillment', content: '', order: 6, isRequired: true},
+      {id: '7', title: 'Plan Financier', content: '', order: 7, isRequired: true},
+    ],
+  },
+  {
+    id: '3',
+    name: 'Services B2B',
+    sector: 'Services',
+    description: 'Modèle pour entreprises de services avec focus sur la relation client et la qualité.',
+    sections: [
+      {id: '1', title: 'Résumé Opérationnel', content: '', order: 1, isRequired: true},
+      {id: '2', title: 'Présentation de l\'Entreprise', content: '', order: 2, isRequired: true},
+      {id: '3', title: 'Analyse du Marché B2B', content: '', order: 3, isRequired: true},
+      {id: '4', title: 'Offre de Services', content: '', order: 4, isRequired: true},
+      {id: '5', title: 'Stratégie Commerciale', content: '', order: 5, isRequired: true},
+      {id: '6', title: 'Processus Qualité', content: '', order: 6, isRequired: true},
+      {id: '7', title: 'Plan Financier', content: '', order: 7, isRequired: true},
+    ],
+  },
+  {
+    id: '4',
+    name: 'Startup Tech',
+    sector: 'Technologie',
+    description: 'Modèle pour startups technologiques avec focus sur l\'innovation et la scalabilité.',
+    sections: [
+      {id: '1', title: 'Résumé Opérationnel', content: '', order: 1, isRequired: true},
+      {id: '2', title: 'Présentation de l\'Entreprise', content: '', order: 2, isRequired: true},
+      {id: '3', title: 'Analyse du Marché Tech', content: '', order: 3, isRequired: true},
+      {id: '4', title: 'Produit/Solution', content: '', order: 4, isRequired: true},
+      {id: '5', title: 'Go-to-Market Strategy', content: '', order: 5, isRequired: true},
+      {id: '6', title: 'Plan de Développement', content: '', order: 6, isRequired: true},
+      {id: '7', title: 'Plan Financier', content: '', order: 7, isRequired: true},
+    ],
+  },
+];
+
+// Plans d'affaires de démonstration
+export const mockBusinessPlans: BusinessPlan[] = [
+  {
+    id: '1',
+    title: 'Restaurant Le Gourmet',
+    description: 'Restaurant gastronomique en centre-ville',
+    sector: 'Restauration',
+    status: 'completed',
+    createdAt: new Date('2024-01-15'),
+    updatedAt: new Date('2024-01-20'),
+    sections: [
+      {
+        id: '1',
+        title: 'Résumé Opérationnel',
+        content: 'Le Restaurant Le Gourmet est un établissement gastronomique situé en centre-ville, proposant une cuisine française moderne avec des produits locaux et de saison. Notre objectif est de devenir la référence gastronomique de la région.',
+        order: 1,
+        isCompleted: true,
+        suggestions: ['Ajouter des chiffres clés', 'Préciser le positionnement prix'],
+      },
+      {
+        id: '2',
+        title: 'Présentation de l\'Entreprise',
+        content: 'Restaurant créé en 2024 par un chef expérimenté avec 15 ans d\'expérience dans la gastronomie française. L\'équipe comprend 8 personnes : 1 chef, 2 cuisiniers, 3 serveurs, 1 sommelier et 1 manager.',
+        order: 2,
+        isCompleted: true,
+      },
+      {
+        id: '3',
+        title: 'Analyse du Marché',
+        content: 'Le marché de la restauration gastronomique représente 15M€ dans notre zone géographique. La concurrence comprend 12 restaurants similaires, mais aucun ne propose une cuisine française moderne avec des produits locaux.',
+        order: 3,
+        isCompleted: false,
+        suggestions: ['Ajouter une analyse concurrentielle détaillée', 'Inclure des données démographiques'],
+      },
+      {
+        id: '4',
+        title: 'Produits et Services',
+        content: 'Menu déjeuner (35€) et dîner (65€), événements privés, cours de cuisine, dégustations de vins.',
+        order: 4,
+        isCompleted: false,
+      },
+      {
+        id: '5',
+        title: 'Stratégie Marketing',
+        content: 'Marketing digital (site web, réseaux sociaux), partenariats avec producteurs locaux, événements gastronomiques.',
+        order: 5,
+        isCompleted: false,
+      },
+      {
+        id: '6',
+        title: 'Plan Opérationnel',
+        content: 'Gestion des approvisionnements, formation du personnel, procédures qualité, gestion des stocks.',
+        order: 6,
+        isCompleted: false,
+      },
+      {
+        id: '7',
+        title: 'Plan Financier',
+        content: 'Prévisions sur 3 ans : CA 800k€ année 1, 1.2M€ année 2, 1.5M€ année 3. Investissement initial : 200k€.',
+        order: 7,
+        isCompleted: false,
+      },
+    ],
+    aiAnalysis: {
+      score: 85,
+      suggestions: [
+        'Compléter l\'analyse de marché avec des données chiffrées',
+        'Détailler la stratégie marketing et commerciale',
+        'Ajouter des prévisions financières détaillées',
+      ],
+      strengths: [
+        'Proposition de valeur claire',
+        'Expérience du fondateur',
+        'Localisation stratégique',
+      ],
+      weaknesses: [
+        'Plan marketing incomplet',
+        'Prévisions financières manquantes',
+        'Analyse concurrentielle superficielle',
+      ],
+      lastAnalyzed: new Date('2024-01-20'),
+    },
+  },
+  {
+    id: '2',
+    title: 'Boutique en Ligne Mode',
+    description: 'E-commerce spécialisé dans la mode éthique et durable',
+    sector: 'E-commerce',
+    status: 'in_progress',
+    createdAt: new Date('2024-01-10'),
+    updatedAt: new Date('2024-01-18'),
+    sections: [
+      {
+        id: '1',
+        title: 'Résumé Opérationnel',
+        content: 'Boutique en ligne spécialisée dans la mode éthique et durable, proposant des vêtements et accessoires de marques engagées.',
+        order: 1,
+        isCompleted: true,
+      },
+      {
+        id: '2',
+        title: 'Présentation de l\'Entreprise',
+        content: 'Startup créée en 2024 par une entrepreneure passionnée de mode durable.',
+        order: 2,
+        isCompleted: true,
+      },
+      {
+        id: '3',
+        title: 'Analyse du Marché Digital',
+        content: 'Le marché de la mode éthique en ligne croît de 25% par an.',
+        order: 3,
+        isCompleted: false,
+      },
+    ],
+  },
+];
+
+// Devis de démonstration
+export const mockQuotes: Quote[] = [
+  {
+    id: '1',
+    quoteNumber: 'DEV-2024-001',
+    clientName: 'Entreprise ABC',
+    clientEmail: 'contact@entreprise-abc.fr',
+    clientAddress: '123 Rue de la Paix, 75001 Paris',
+    items: [
+      {id: '1', description: 'Développement site web e-commerce', quantity: 1, unitPrice: 8000, totalPrice: 8000},
+      {id: '2', description: 'Intégration système de paiement', quantity: 1, unitPrice: 1500, totalPrice: 1500},
+      {id: '3', description: 'Maintenance mensuelle', quantity: 12, unitPrice: 500, totalPrice: 6000},
+    ],
+    subtotal: 15500,
+    taxRate: 20,
+    taxAmount: 3100,
+    total: 18600,
+    status: 'sent',
+    createdAt: new Date('2024-01-15'),
+    validUntil: new Date('2024-02-15'),
+    notes: 'Devis pour refonte complète du site web avec nouvelles fonctionnalités e-commerce',
+  },
+  {
+    id: '2',
+    quoteNumber: 'DEV-2024-002',
+    clientName: 'Startup XYZ',
+    clientEmail: 'hello@startup-xyz.com',
+    clientAddress: '456 Avenue des Champs, 69000 Lyon',
+    items: [
+      {id: '1', description: 'Application mobile iOS', quantity: 1, unitPrice: 15000, totalPrice: 15000},
+      {id: '2', description: 'Application mobile Android', quantity: 1, unitPrice: 15000, totalPrice: 15000},
+      {id: '3', description: 'API Backend', quantity: 1, unitPrice: 8000, totalPrice: 8000},
+    ],
+    subtotal: 38000,
+    taxRate: 20,
+    taxAmount: 7600,
+    total: 45600,
+    status: 'accepted',
+    createdAt: new Date('2024-01-10'),
+    validUntil: new Date('2024-02-10'),
+  },
+];
+
+// Budgets de démonstration
+export const mockBudgets: Budget[] = [
+  {
+    id: '1',
+    title: 'Budget 2024',
+    period: 'yearly',
+    startDate: new Date('2024-01-01'),
+    endDate: new Date('2024-12-31'),
+    categories: [
+      {
+        id: '1',
+        name: 'Revenus',
+        type: 'income',
+        budgetedAmount: 120000,
+        actualAmount: 95000,
+        variance: -25000,
+        items: [],
+      },
+      {
+        id: '2',
+        name: 'Salaires',
+        type: 'expense',
+        budgetedAmount: 60000,
+        actualAmount: 58000,
+        variance: 2000,
+        items: [],
+      },
+      {
+        id: '3',
+        name: 'Marketing',
+        type: 'expense',
+        budgetedAmount: 15000,
+        actualAmount: 18000,
+        variance: -3000,
+        items: [],
+      },
+      {
+        id: '4',
+        name: 'Frais Généraux',
+        type: 'expense',
+        budgetedAmount: 25000,
+        actualAmount: 22000,
+        variance: 3000,
+        items: [],
+      },
+    ],
+    totalIncome: 95000,
+    totalExpenses: 98000,
+    balance: -3000,
+    createdAt: new Date('2024-01-01'),
+  },
+];
+
+// Démarches administratives
+export const mockAdministrativeSteps: AdministrativeStep[] = [
+  {
+    id: '1',
+    title: 'Choisir le statut juridique',
+    description: 'Définir la forme juridique de votre entreprise (SARL, SAS, auto-entrepreneur, etc.)',
+    category: 'creation',
+    priority: 'high',
+    estimatedTime: '1-2 jours',
+    requiredDocuments: ['Pièce d\'identité', 'Justificatif de domicile'],
+    links: [
+      {
+        id: '1',
+        title: 'Guide des statuts juridiques',
+        url: 'https://www.service-public.fr/professionnels-entreprises/vosdroits/F31228',
+        description: 'Comparatif des différents statuts juridiques',
+      },
+    ],
+    isCompleted: false,
+  },
+  {
+    id: '2',
+    title: 'Immatriculation au RCS',
+    description: 'Enregistrer votre entreprise au Registre du Commerce et des Sociétés',
+    category: 'creation',
+    priority: 'high',
+    estimatedTime: '1 semaine',
+    requiredDocuments: ['Statuts', 'K-bis', 'Pièce d\'identité'],
+    links: [
+      {
+        id: '1',
+        title: 'CFE (Centre de Formalités des Entreprises)',
+        url: 'https://www.cfe.urssaf.fr/',
+        description: 'Démarches en ligne pour l\'immatriculation',
+      },
+    ],
+    isCompleted: false,
+  },
+  {
+    id: '3',
+    title: 'Ouverture compte bancaire professionnel',
+    description: 'Créer un compte bancaire dédié à votre activité professionnelle',
+    category: 'creation',
+    priority: 'medium',
+    estimatedTime: '1-2 semaines',
+    requiredDocuments: ['K-bis', 'Statuts', 'Pièce d\'identité'],
+    links: [],
+    isCompleted: false,
+  },
+  {
+    id: '4',
+    title: 'Déclaration TVA',
+    description: 'S\'inscrire à la TVA si votre chiffre d\'affaires dépasse les seuils',
+    category: 'fiscal',
+    priority: 'medium',
+    estimatedTime: '1 jour',
+    requiredDocuments: ['K-bis', 'Déclaration de chiffre d\'affaires'],
+    links: [
+      {
+        id: '1',
+        title: 'Service Public - TVA',
+        url: 'https://www.service-public.fr/professionnels-entreprises/vosdroits/F31228',
+        description: 'Informations sur la TVA',
+      },
+    ],
+    isCompleted: false,
+  },
+  {
+    id: '5',
+    title: 'Inscription URSSAF',
+    description: 'S\'inscrire aux organismes de sécurité sociale',
+    category: 'social',
+    priority: 'high',
+    estimatedTime: '1 semaine',
+    requiredDocuments: ['K-bis', 'Statuts', 'Contrat de travail'],
+    links: [
+      {
+        id: '1',
+        title: 'URSSAF',
+        url: 'https://www.urssaf.fr/',
+        description: 'Déclarations sociales en ligne',
+      },
+    ],
+    isCompleted: false,
+  },
+  {
+    id: '6',
+    title: 'Assurance responsabilité civile professionnelle',
+    description: 'Souscrire une assurance RC Pro pour protéger votre activité',
+    category: 'legal',
+    priority: 'medium',
+    estimatedTime: '1 jour',
+    requiredDocuments: ['K-bis', 'Statuts', 'Descriptif de l\'activité'],
+    links: [],
+    isCompleted: false,
+  },
+];
+
+// Conseils et astuces
+export const dailyTips = [
+  {
+    id: '1',
+    title: '💡 Astuce Entrepreneur',
+    content: 'Un plan d\'affaires solide est la base de toute entreprise réussie. Prenez le temps de bien définir votre proposition de valeur et votre modèle économique avant de vous lancer.',
+  },
+  {
+    id: '2',
+    title: '📊 Gestion Financière',
+    content: 'Suivez régulièrement vos indicateurs clés de performance (KPI) financiers. Un budget prévisionnel doit être révisé chaque mois pour rester pertinent.',
+  },
+  {
+    id: '3',
+    title: '🎯 Marketing Digital',
+    content: 'Les réseaux sociaux sont essentiels pour les entrepreneurs. Choisissez 2-3 plateformes où votre audience est présente et concentrez-vous sur la qualité plutôt que la quantité.',
+  },
+  {
+    id: '4',
+    title: '⚖️ Aspects Légaux',
+    content: 'N\'oubliez pas de protéger votre propriété intellectuelle. Déposez vos marques, brevets et droits d\'auteur dès que possible.',
+  },
+  {
+    id: '5',
+    title: '🤝 Relations Clients',
+    content: 'Un client satisfait est votre meilleur ambassadeur. Investissez dans la qualité de service et la satisfaction client.',
+  },
+];
